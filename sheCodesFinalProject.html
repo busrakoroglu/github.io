@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🇪🇸 Publitas Retreat Countdown</title>
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        align-items: start;
+        background-color: #f3fbfe;
+        display: flex;
+        font-family: Sans-serif;
+        background: linear-gradient(to bottom, #f1fafd, #f3fbfe);
+      }
+      h1 {
+        font-weight: bolder;
+        letter-spacing: 10px;
+        text-transform: uppercase;
+        margin-top: 40px;
+        font-size: 25px;
+        color: #14345c;
+      }
+      h2 {
+        font-weight: bold;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-top: 20px;
+        font-size: 15px;
+        color: #14345c;
+      }
+      h3 {
+        font-weight: bold;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-top: 15px;
+        margin-bottom: 20px;
+        font-size: 15px;
+        color: #14345c;
+      }
+      img {
+        width: 750.031px;
+        height: 127px;
+        margin-top: 15px;
+        border-radius: 20px;
+      }
+      li {
+        display: inline-block;
+        font-size: 20px;
+        padding: 15px;
+        list-style-type: none;
+        text-transform: uppercase;
+      }
+      li span {
+        display: block;
+        font-size: 30px;
+      }
+      p {
+        font-size: 14px;
+        opacity: 0.7;
+        margin-top: 15px;
+        text-align: center;
+        font-family: Sans-serif;
+      }
+      button {
+        display: block;
+        margin: 40px auto;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        border: 1px solid #14345c;
+        background: #f3fbfe;
+        color: #14345c;
+        font-size: 16px;
+        line-height: 22px;
+        padding: 16px 24px;
+        border-radius: 30px;
+        transition: all 200ms ease;
+        box-shadow: #14345c 0px 8px 8px 0;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #d9eefc;
+        color: #1a64d6;
+        border: 1px solid #1a64d6;
+      }
+      .website:hover {
+        color: #2aaee4;
+      }
+      .container {
+        color: #14345c;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .teampublitas {
+        width: 600px;
+        height: 400px;
+      }
+      .website {
+        text-decoration: none;
+        font-weight: bold;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-top: 20px;
+        font-size: 20px;
+        color: #14345c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/135/884/original/publitas_com_cover.jpeg?1722111020"
+        alt="publitas"
+      />
+      <h1>let the countdown begin</h1>
+      <h2>
+        <a href="https://www.publitas.com/" target="_blank" class="website">
+          Publitas.com
+        </a>
+      </h2>
+      <h3>On-site retreat 2024 Malaga 🇪🇸</h3>
+      <div id="countdown">
+        <ul>
+          <li><span id="days"></span>days</li>
+          <li><span id="hours"></span>Hours</li>
+          <li><span id="minutes"></span>Minutes</li>
+          <li><span id="seconds"></span>Seconds</li>
+        </ul>
+      </div>
+      <img
+      src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/135/882/original/publitas-team-group-photo-about-us-2024.jpg?1722110902"
+      alt="teampublitas" class="teampublitas"
+    </div>
+    <button>Join now!</button>
+    <hr />
+    <p>
+      <em> This page was built by <strong>Busra Koroglu</strong> </em>
+    </p>
+  </body>
+  <script>
+    (function () {
+      const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+      let today = new Date(),
+        dd = String(today.getDate()).padStart(2, "0"),
+        mm = String(today.getMonth() + 1).padStart(2, "0"),
+        yyyy = today.getFullYear(),
+        nextYear = yyyy + 1,
+        dayMonth = "10/07/",
+        retreat = dayMonth + yyyy;
+
+      today = mm + "/" + dd + "/" + yyyy;
+      if (today > retreat) {
+        retreat = dayMonth + nextYear;
+      }
+
+      const countDown = new Date(retreat).getTime(),
+        x = setInterval(function () {
+          const now = new Date().getTime(),
+            distance = countDown - now;
+
+          (document.getElementById("days").innerText = Math.floor(
+            distance / day
+          )),
+            (document.getElementById("hours").innerText = Math.floor(
+              (distance % day) / hour
+            )),
+            (document.getElementById("minutes").innerText = Math.floor(
+              (distance % hour) / minute
+            )),
+            (document.getElementById("seconds").innerText = Math.floor(
+              (distance % minute) / second
+            ));
+          if (distance < 0) {
+            document.getElementById("h1").innerText = "It's retreat time!";
+            document.getElementById("countdown").style.display = "none";
+            document.getElementById("content").style.display = "block";
+            clearInterval(x);
+          }
+        }, 0);
+    })();
+
+    function joinNow() {
+      let name = prompt("What is your name?");
+
+      let h1 = document.querySelector("h1");
+      h1.innerHTML = "LFG! <br> See you in Malaga, " + name + "! ☀️";
+    }
+
+    let applyButton = document.querySelector("button");
+
+    applyButton.addEventListener("click", joinNow);
+  </script>
+</html>
